@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+/* SF Pro font family with fallbacks */
+@font-face {
+  font-family: 'SF_Pro';
+  src: local('SF Pro Display'), local('SF Pro Text'), local('Inter'), system-ui, -apple-system, sans-serif;
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  font-family: 'SF_Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
