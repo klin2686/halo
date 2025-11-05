@@ -51,7 +51,7 @@ const FoodItemCard = ({ item }: { item: FoodItem }) => {
         </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {item.allergens.map((allergen, index) => (
           <div
             key={index}
@@ -84,6 +84,10 @@ const FoodItemsSection = () => {
       name: "Pad Thai",
       allergens: [
         { name: "Peanuts", severity: "severe" },
+        { name: "Shellfish", severity: "moderate" },
+        { name: "Shellfish", severity: "moderate" },
+        { name: "Shellfish", severity: "moderate" },
+        { name: "Shellfish", severity: "moderate" },
         { name: "Shellfish", severity: "moderate" },
       ],
       confidence: 97,
