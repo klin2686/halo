@@ -32,3 +32,5 @@ __pycache__/
 # Logs
 logs/
 *.log
+
+.vsls.json
