@@ -99,14 +99,17 @@ def image_to_bytes(img, format='JPEG', quality=95):
 
 # Gemini prompt
 gemini_prompt = (
-    'Please itemize the food items on the image of a menu. '
-    'Then, for each item, identify allergens commonly found '
-    'in that food item (or something similar). If an item does '
-    'not have any common allergens, its common_allergens property '
-    'should hold a single string "None". If the menu '
-    'is blurry or unreadable where it is difficult to accurately '
-    'itemize 90% of the menu items, then return a JSON array '
-    'with a single object holding "__ERROR__" in both properties.'
+    'Please itemize the food items on the image of a menu. Then, for each item, '
+    'identify allergens commonly found in that food item (or a similar dish). '
+    'If an item does not have any common allergens, its common_allergens property '
+    'should hold a single string "None". If you cannot determine an item\'s '
+    'common allergens, either because it\'s difficult to tell from the item name alone or '
+    'for another reason, the item\'s common_allergens property should contain a single '
+    'string "Unknown". Additionally, for each item, include a confidence score from '
+    '0 to 10 based on how confident you are about the allergens present in that item. '
+    'If the menu is blurry or unreadable where it is difficult to accurately itemize '
+    'at least 90% of the menu items, then return a JSON array with a single object '
+    'holding "__ERROR__" in both properties.'
 )
 
 
