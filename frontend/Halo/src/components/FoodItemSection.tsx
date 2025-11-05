@@ -8,7 +8,7 @@ interface AllergenTag {
 interface FoodItem {
   name: string;
   allergens: AllergenTag[];
-  confidence: number; // 0-100
+  confidence: number; // 0-100 - Represents how confident the ai is about the allergens
 }
 
 const FoodItemCard = ({ item }: { item: FoodItem }) => {
@@ -44,6 +44,7 @@ const FoodItemCard = ({ item }: { item: FoodItem }) => {
             style={{ width: `${100 - item.confidence}%` }}
           />
         </div>
+
         <div className="absolute inset-0 bg-white/50 rounded-full flex items-center justify-center">
           <span className="text-[11px] text-black font-sf-pro">
             {item.confidence}
@@ -106,10 +107,52 @@ const FoodItemsSection = () => {
       allergens: [{ name: "Shellfish", severity: "moderate" }],
       confidence: 31,
     },
+    {
+      name: "Pesto Pasta",
+      allergens: [
+        { name: "Tree Nuts", severity: "severe" },
+        { name: "Shrimp", severity: "moderate" },
+        { name: "Dairy", severity: "mild" },
+      ],
+      confidence: 67,
+    },
+    {
+      name: "Chef's Special",
+      allergens: [{ name: "Shellfish", severity: "moderate" }],
+      confidence: 31,
+    },
+    {
+      name: "Pesto Pasta",
+      allergens: [
+        { name: "Tree Nuts", severity: "severe" },
+        { name: "Shrimp", severity: "moderate" },
+        { name: "Dairy", severity: "mild" },
+      ],
+      confidence: 67,
+    },
+    {
+      name: "Chef's Special",
+      allergens: [{ name: "Shellfish", severity: "moderate" }],
+      confidence: 31,
+    },
+    {
+      name: "Pesto Pasta",
+      allergens: [
+        { name: "Tree Nuts", severity: "severe" },
+        { name: "Shrimp", severity: "moderate" },
+        { name: "Dairy", severity: "mild" },
+      ],
+      confidence: 67,
+    },
+    {
+      name: "Chef's Special",
+      allergens: [{ name: "Shellfish", severity: "moderate" }],
+      confidence: 31,
+    },
   ];
 
   return (
-    <div className="h-full w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 flex flex-col p-6 gap-6">
+    <div className="flex flex-col p-6 gap-6 h-[38rem] w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 ">
       <div className="flex items-center w-full h-[50px] bg-white/50 border border-white/50 rounded-xl px-4 ">
         <input
           type="text"
@@ -117,7 +160,7 @@ const FoodItemsSection = () => {
           className="w-full bg-transparent text-2xl text-black placeholder-black/70 font-sf-pro outline-none"
         />
       </div>
-      <div className="flex-1 h-full overflow-auto">
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="grid grid-cols-2 gap-6 pb-4">
           {foodItems.map((item, index) => (
             <FoodItemCard key={index} item={item} />
