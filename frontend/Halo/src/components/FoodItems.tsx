@@ -21,6 +21,69 @@ const FoodItems = () => {
         ["Gluten", "mild"],
       ],
     },
+    {
+      food: "Sushi",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "MCDonalds Burger",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "Ice Cream",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "Chicken",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "Nuggets",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "Potato",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
+    {
+      food: "Pizza",
+      confidence: 8.5,
+      allergens: [
+        ["Peanuts", "severe"],
+        ["Dairy", "moderate"],
+        ["Gluten", "mild"],
+      ],
+    },
   ];
 
   const filteredItems = useMemo(() => {
