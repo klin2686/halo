@@ -4,10 +4,10 @@ from app.extensions import db
 from app.utils.jwt_utils import token_required
 from app.models import UserAllergy, Allergen, STANDARD_ALLERGENS
 
-allergy_bp = Blueprint('allergies',__name__)
+allergy_bp = Blueprint('allergy',__name__)
 
 
-@allergy_bp.route('/allergies/add', methods=['POST'])
+@allergy_bp.route('/allergy/add', methods=['POST'])
 @token_required
 def add(current_user):
     data = request.get_json()
@@ -48,7 +48,7 @@ def add(current_user):
     }), 201
 
 
-@allergy_bp.route('/allergies/update', methods=['PUT'])
+@allergy_bp.route('/allergy/update', methods=['PUT'])
 @token_required
 def update(current_user):
     data = request.get_json()
@@ -89,7 +89,7 @@ def update(current_user):
     }), 200
 
 
-@allergy_bp.route('/allergies/delete', methods=['DELETE'])
+@allergy_bp.route('/allergy/delete', methods=['DELETE'])
 @token_required
 def delete(current_user):
     data = request.get_json()
@@ -113,5 +113,5 @@ def delete(current_user):
         return jsonify({'error': 'Current user does not own the given user_allergy'}), 401
 
     db.session.delete(user_allergy)
-    db.commit()
-    return jsonify({'message': 'User_allergy successfully deleted',}), 204
+    db.session.commit()
+    return jsonify({'message': 'User_allergy successfully deleted'}), 204
