@@ -1,9 +1,13 @@
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy import String, Boolean, DateTime, Integer
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.extensions import db
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models import UserAllergy
 
 
 class User(db.Model):
@@ -16,6 +20,7 @@ class User(db.Model):
     name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     profile_picture: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    allergens: Mapped[List['UserAllergy']] = relationship('UserAllergy', back_populates='user', cascade='all, delete-orphan')
 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
