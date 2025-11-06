@@ -32,7 +32,7 @@ const FoodItemCard = ({ item }: { item: FoodItem }) => {
   };
 
   return (
-    <div className="h-full w-full bg-white/50 border border-white/50 rounded-xl backdrop-blur-sm p-4 relative">
+    <div className="h-full w-full bg-white/15 rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-1px] outline-white/50 overflow-y overflow-x p-4 relative">
       <h1 className="text-2xl font-bold text-black font-sf-pro mb-3">
         {item.name}
       </h1>
@@ -152,7 +152,7 @@ const FoodItemsSection = () => {
   ];
 
   return (
-    <div className="flex flex-col p-6 gap-6 h-[38rem] w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 ">
+    <div className="flex flex-col p-6 gap-6 h-[38rem] w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-1px] outline-white/50 overflow-y-auto overflow-x no-scrollbar">
       <div className="flex items-center w-full h-[50px] bg-white/50 border border-white/50 rounded-xl px-4 ">
         <input
           type="text"
@@ -160,7 +160,7 @@ const FoodItemsSection = () => {
           className="w-full bg-transparent text-2xl text-black placeholder-black/70 font-sf-pro outline-none"
         />
       </div>
-      <div className="flex-1 min-h-0 overflow-y-auto">
+      <div className="flex-1 min-h-0 overflow-x overflow-y">
         <div className="grid grid-cols-2 gap-6 pb-4">
           {foodItems.map((item, index) => (
             <FoodItemCard key={index} item={item} />
