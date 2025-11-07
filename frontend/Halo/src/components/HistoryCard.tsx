@@ -10,7 +10,7 @@ interface HistoryCardProps {
   onCardClick: () => void;
 }
 
-const HistoryCard = ({ id, name, dateTime, menuItems, allergies, onCardClick }: HistoryCardProps) => {
+const HistoryCard = ({ name, dateTime, onCardClick }: HistoryCardProps) => {
   return (
     <div
       className="flex flex-row items-center justify-start w-full transition-all ease-in-out duration-300 opacity-100 scale-100"
