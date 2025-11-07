@@ -47,7 +47,7 @@ const ManualInputPopup = ({ onClose, onMenuProcessed, onSubmitStart, onSubmitEnd
         <div className="w-3/5 h-2/3 bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 p-12 flex flex-col items-center gap-6 animate-fadeIn relative">
           <button
             onClick={onClose}
-          className="absolute top-6 right-6 text-black/60 hover:text-black transition-colors"
+          className="cursor-pointer absolute top-6 right-6 text-black/60 hover:text-black transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

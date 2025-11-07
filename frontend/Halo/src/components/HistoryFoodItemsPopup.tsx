@@ -84,7 +84,7 @@ const HistoryFoodItemsPopup = ({
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm flex-shrink-0 outline outline-1 outline-offset-[-0.0625rem] outline-white/50 bg-white/50 shadow-xl pointer-events-auto"
+            className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm flex-shrink-0 outline outline-1 outline-offset-[-0.0625rem] outline-white/50 bg-white/50 shadow-xl pointer-events-auto"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
