@@ -1,4 +1,3 @@
-import React from "react";
 import SeverityTag from "./SeverityTag";
 import { allergyAPI, storage } from "../utils/api";
 

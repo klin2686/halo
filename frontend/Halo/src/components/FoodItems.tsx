@@ -31,10 +31,7 @@ const FoodItems = ({ items, allergies }: FoodItemsProps) => {
           const userAllergy = allergies.find(
             (a) => a.allergen.toLowerCase() === allergenName.toLowerCase()
           );
-          return [allergenName, userAllergy?.severity || "none"] as [
-            string,
-            string
-          ];
+          return [allergenName, userAllergy?.severity || "none"] as [string, string];
         })
         .sort((a, b) => {
           const severityOrder: { [key: string]: number } = {
@@ -43,86 +40,12 @@ const FoodItems = ({ items, allergies }: FoodItemsProps) => {
             moderate: 2,
             severe: 3,
           };
-          return severityOrder[a[1]] - severityOrder[b[1]];
+          return severityOrder[b[1]] - severityOrder[a[1]];
         }),
     }));
   }, [items, allergies]);
 
   const foodItems: EnrichedFoodItem[] = enrichedItems;
-
-  // const foodItems: EnrichedFoodItem[] = [
-  //   {
-  //     food: "Pizza",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "none"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "none"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Sushi",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "MCDonalds Burger",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Ice Cream",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Chicken",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Nuggets",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Potato",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"],
-  //       ["Gluten", "mild"],
-  //     ],
-  //   },
-  //   {
-  //     food: "Pizza",
-  //     confidence: 8.5,
-  //     allergens: [
-  //       ["Peanuts", "severe"],
-  //       ["Dairy", "moderate"]
-  //     ],
-  //   },
-  // ];
 
   const filteredItems = useMemo(() => {
     if (!searchTerm.trim()) {

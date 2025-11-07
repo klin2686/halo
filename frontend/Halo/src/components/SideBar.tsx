@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import SideBarProfile from "./SideBarProfile";
 import SideBarElement from "./SideBarElement";

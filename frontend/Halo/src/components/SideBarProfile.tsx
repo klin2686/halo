@@ -1,5 +1,3 @@
-import React from "react";
-
 interface SideBarProfileProps {
   picture: string;
   name: string;

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface SideBarElementProps {
   element: string;
   logo: string;

@@ -40,9 +40,11 @@ const AllergyBar = ({ onAllergiesLoaded }: AllergyBarProps) => {
     setDeletingIds((prev) => new Set(prev).add(allergyId));
 
     setTimeout(() => {
-      setAllergies((prevAllergies) =>
-        prevAllergies.filter((allergy) => allergy.id !== allergyId)
-      );
+      setAllergies((prevAllergies) => {
+        const updatedAllergies = prevAllergies.filter((allergy) => allergy.id !== allergyId);
+        onAllergiesLoaded?.(updatedAllergies);
+        return updatedAllergies;
+      });
       setDeletingIds((prev) => {
         const newSet = new Set(prev);
         newSet.delete(allergyId);

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface FoodItemsSearchProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;

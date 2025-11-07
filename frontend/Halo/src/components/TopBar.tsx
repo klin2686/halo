@@ -1,4 +1,3 @@
-import React from "react";
 import haloLogo from "../assets/haloLogo.svg";
 
 const TopBar = ({}) => {
