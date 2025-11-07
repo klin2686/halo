@@ -6,9 +6,14 @@ import RestaurantInput from "./components/RestaurantInput";
 import FoodItemsSection from "./components/FoodItems";
 import AllergyBar from "./components/AllergyBar";
 import UserLogin from "./components/UserLogin";
+import { useState } from "react";
+import { type MenuItem } from "./utils/api";
+import { type Allergy } from "./components/AllergyList";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth();
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const [userAllergies, setUserAllergies] = useState<Allergy[]>([]);
 
   if (isLoading) {
     return (
@@ -30,6 +35,14 @@ const App = () => {
     return <UserLogin />;
   }
 
+  const transformMenuItems = (items: MenuItem[]) => {
+    return items.map(item => ({
+      food: item.item_name,
+      confidence: item.confidence_score,
+      allergens: item.common_allergens
+    }));
+  };
+
   return (
     <div
       className="h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed relative"
@@ -44,10 +57,10 @@ const App = () => {
         <div className="flex-1 grid grid-cols-[4fr_10fr_5fr] gap-[1rem] min-h-0">
           <SideBar />
           <div className="grid grid-rows-[1fr_3fr] gap-[1rem] min-h-0">
-            <RestaurantInput />
-            <FoodItemsSection />
+            <RestaurantInput onMenuProcessed={setMenuItems} />
+            <FoodItemsSection items={transformMenuItems(menuItems)} allergies={userAllergies} />
           </div>
-          <AllergyBar />
+          <AllergyBar onAllergiesLoaded={setUserAllergies} />
         </div>
       </div>
     </div>

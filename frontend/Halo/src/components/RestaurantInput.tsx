@@ -1,7 +1,11 @@
 import React from "react";
-import { menuAPI } from "../utils/api";
+import { menuAPI, type MenuItem } from "../utils/api";
 
-const RestaurantInput = () => {
+interface RestaurantInputProps {
+  onMenuProcessed: (items: MenuItem[]) => void;
+}
+
+const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -13,7 +17,7 @@ const RestaurantInput = () => {
     try {
       const data = await menuAPI.processMenuImage(file);
       console.log('Success:', data);
-      // TODO: Pass data (MenuItem[]) to FoodItems component
+      onMenuProcessed(data)
     } catch (error) {
       console.error('Upload failed:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';

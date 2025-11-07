@@ -5,7 +5,11 @@ import AllergyCard from "./AllergyCard";
 import { fetchAllergies, defaultAllergyList } from "./AllergyList";
 import type { Allergy } from "./AllergyList";
 
-const AllergyBar = () => {
+interface AllergyBarProps {
+  onAllergiesLoaded?: (allergies: Allergy[]) => void;
+}
+
+const AllergyBar = ({ onAllergiesLoaded }: AllergyBarProps) => {
   const { isAuthenticated } = useAuth();
   const [allergies, setAllergies] = useState<Allergy[]>(defaultAllergyList);
   const [loading, setLoading] = useState(true);
@@ -20,6 +24,7 @@ const AllergyBar = () => {
     setLoading(true);
     const data = await fetchAllergies(accessToken);
     setAllergies(data);
+    onAllergiesLoaded?.(data);
     setLoading(false);
   };
 
