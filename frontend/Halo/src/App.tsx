@@ -12,7 +12,7 @@ import { type Allergy } from "./components/AllergyList";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth();
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [userAllergies, setUserAllergies] = useState<Allergy[]>([]);
 
   if (isLoading) {
@@ -25,7 +25,9 @@ const App = () => {
       >
         <div className="absolute inset-0 bg-white/25 z-0"></div>
         <div className="relative z-10">
-          <div className="text-black/50 font-sf-pro font-bold text-3xl">Loading...</div>
+          <div className="text-black/50 font-sf-pro font-bold text-3xl">
+            Loading...
+          </div>
         </div>
       </div>
     );
@@ -36,10 +38,10 @@ const App = () => {
   }
 
   const transformMenuItems = (items: MenuItem[]) => {
-    return items.map(item => ({
+    return items.map((item) => ({
       food: item.item_name,
       confidence: item.confidence_score,
-      allergens: item.common_allergens
+      allergens: item.common_allergens,
     }));
   };
 
@@ -58,7 +60,10 @@ const App = () => {
           <SideBar />
           <div className="grid grid-rows-[1fr_3fr] gap-[1rem] min-h-0">
             <RestaurantInput onMenuProcessed={setMenuItems} />
-            <FoodItemsSection items={transformMenuItems(menuItems)} allergies={userAllergies} />
+            <FoodItemsSection
+              items={transformMenuItems(menuItems)}
+              allergies={userAllergies}
+            />
           </div>
           <AllergyBar onAllergiesLoaded={setUserAllergies} />
         </div>
