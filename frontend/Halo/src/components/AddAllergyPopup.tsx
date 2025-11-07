@@ -70,7 +70,7 @@ const AddAllergyPopup = ({
       <div className="relative w-[90%] max-w-md bg-white/90 rounded-3xl shadow-2xl backdrop-blur-md outline outline-2 outline-offset-[-1px] outline-white/50 p-8">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/10 transition-all"
+          className="cursor-pointer absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/10 transition-all"
           aria-label="Close"
         >
           <svg
@@ -100,7 +100,7 @@ const AddAllergyPopup = ({
           <select
             value={selectedAllergen}
             onChange={(e) => setSelectedAllergen(e.target.value)}
-            className="w-full px-4 py-3 bg-white/50 border border-white/50 rounded-xl font-sf-pro text-black outline-none focus:outline-sky-500/50 focus:outline-2"
+            className="cursor-pointer w-full px-4 py-3 bg-white/50 border border-white/50 rounded-xl font-sf-pro text-black outline-none focus:outline-sky-500/50 focus:outline-2"
           >
             <option value="" disabled>
               Choose an allergen...
@@ -120,7 +120,7 @@ const AddAllergyPopup = ({
           <select
             value={selectedSeverity}
             onChange={(e) => setSelectedSeverity(e.target.value)}
-            className="w-full px-4 py-3 bg-white/50 border border-white/50 rounded-xl font-sf-pro text-black outline-none focus:outline-sky-500/50 focus:outline-2"
+            className="cursor-pointer w-full px-4 py-3 bg-white/50 border border-white/50 rounded-xl font-sf-pro text-black outline-none focus:outline-sky-500/50 focus:outline-2"
           >
             <option value="mild">Mild</option>
             <option value="moderate">Moderate</option>
@@ -137,7 +137,7 @@ const AddAllergyPopup = ({
         <button
           onClick={handleSubmit}
           disabled={!selectedAllergen || isSubmitting}
-          className="w-full py-3 bg-sky-500/70 hover:bg-sky-500/90 disabled:bg-gray-400/50 disabled:cursor-not-allowed rounded-xl font-sf-pro font-bold text-white text-lg transition-all shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+          className="cursor-pointer w-full py-3 bg-sky-500/70 hover:bg-sky-500/90 disabled:bg-gray-400/50 disabled:cursor-not-allowed rounded-xl font-sf-pro font-bold text-white text-lg transition-all shadow-lg hover:scale-[1.02] active:scale-[0.98]"
         >
           {isSubmitting ? "Adding..." : "Add Allergy"}
         </button>

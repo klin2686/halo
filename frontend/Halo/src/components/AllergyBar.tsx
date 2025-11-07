@@ -92,7 +92,7 @@ const AllergyBar = ({ onAllergiesLoaded }: AllergyBarProps) => {
         >
           <button
             onClick={() => setIsActive(!isActive)}
-            className="w-[3rem] h-[3rem] backdrop-blur-sm border border-white/50 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
+            className="cursor-pointer w-[3rem] h-[3rem] backdrop-blur-sm border border-white/50 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
           >
             <svg
               width="20"
@@ -124,7 +124,7 @@ const AllergyBar = ({ onAllergiesLoaded }: AllergyBarProps) => {
 
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="w-[3rem] h-[3rem] backdrop-blur-sm border border-white/50 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
+            className="cursor-pointer w-[3rem] h-[3rem] backdrop-blur-sm border border-white/50 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
           >
             <svg
               width="20"
