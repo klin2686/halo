@@ -74,8 +74,8 @@ const HistoryFoodItemsPopup = ({
         className="flex flex-col h-3/5 w-4/5 bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-row items-center gap-2 p-[1.5rem] pb-[0.75rem]">
-          <div className="flex-1">
+        <div className="absolute top-0 left-0 right-0 z-10 flex flex-row items-center gap-2 p-[1.5rem] pb-[0.75rem] pointer-events-none">
+          <div className="flex-1 pointer-events-auto">
             <FoodItemsSearch
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
@@ -84,7 +84,7 @@ const HistoryFoodItemsPopup = ({
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm flex-shrink-0 outline outline-1 outline-offset-[-0.0625rem] outline-white/50 bg-white/50 shadow-xl"
+            className="w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm flex-shrink-0 outline outline-1 outline-offset-[-0.0625rem] outline-white/50 bg-white/50 shadow-xl pointer-events-auto"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const HistoryFoodItemsPopup = ({
             </svg>
           </button>
         </div>
-        <div className="grid grid-cols-2 place-items-center px-6 pb-6 overflow-y-auto overflow-x-visible no-scrollbar">
+        <div className="grid grid-cols-2 place-items-center pt-[6.125rem] px-6 pb-6 overflow-y-auto overflow-x-visible no-scrollbar">
           {filteredItems.length > 0 ? (
             filteredItems.map((item, index) => (
               <FoodItemCard
