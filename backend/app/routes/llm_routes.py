@@ -5,7 +5,10 @@ from PIL import Image, ImageOps, ImageEnhance
 import pillow_heif
 import io
 import json
-from app.models import STANDARD_ALLERGENS
+from sqlalchemy import select
+from app.models import STANDARD_ALLERGENS, MenuUpload
+from app.extensions import db
+from app.utils.jwt_utils import token_required
 
 pillow_heif.register_heif_opener()
 
@@ -62,6 +65,7 @@ gemini_text_prompt = (
     'from this set (spelled and capitalized as shown in the set): {{' + ', '.join(STANDARD_ALLERGENS) + '}}. '
     'Use "None" if no common allergens are present and "Unknown" if uncertain from the name alone. '
     'Also for each item, include a confidence score from 1 to 10 (inclusive) on how confident you are in the listed allergens for that item. '
+    'If any item is labeled as unknown, the confidence score should be zero. '
     'If more than 10% of the menu items are not food items, return a single object array with "__ERROR__" in all properties. Otherwise, '
     'just set the common allergens to "Unknown" for the odd items.'
 )
@@ -94,11 +98,14 @@ response_schema = types.Schema(
 
 
 @llm_bp.route('/process-menu', methods=['POST'])
-def process_menu():
+@token_required
+def process_menu(current_user):
     """Process uploaded menu image and extract items with allergens using Gemini"""
     if 'menu_image' not in request.files:
         return jsonify({'error': 'No file uploaded'}), 400
     image_file = request.files['menu_image']
+
+    upload_name = image_file.filename or 'Untitled Menu'
 
     if image_file.filename is not None:
         file_name = image_file.filename.lower()
@@ -137,15 +144,30 @@ def process_menu():
 
     if response.text:
         parsed_data = json.loads(response.text)
+
         if parsed_data and len(parsed_data) > 0 and parsed_data[0].get('item_name') == '__ERROR__':
             return jsonify({'error': 'Menu image is too blurry or unreadable'}), 400
-        return jsonify(parsed_data), 200
+
+        try:
+            menu_upload = MenuUpload(
+                user_id=current_user.id,
+                upload_name=upload_name.strip(),
+                analysis_result=parsed_data
+            )
+            db.session.add(menu_upload)
+            db.session.commit()
+            return jsonify(parsed_data), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': f'Failed to save menu upload: {str(e)}'}), 500
+
     else:
         return jsonify({'error': 'No response from Gemini'}), 500
 
 
 @llm_bp.route('/process-manual-input', methods=['POST'])
-def process_manual():
+@token_required
+def process_manual(current_user):
     """Parse and send a list of menu items to Gemini for processing"""
     data = request.get_json()
     if not data:
@@ -159,6 +181,8 @@ def process_manual():
     stripped_menu_items = [item.strip() for item in menu_items if isinstance(item, str)]
     if len(menu_items) != len(stripped_menu_items):
         return jsonify({'error': 'Menu items must be strings'}), 400
+
+    upload_name = data.get('menu_name', 'Untitled Manual Menu Input')
 
     client = genai.Client()
     response = client.models.generate_content(
@@ -174,7 +198,104 @@ def process_manual():
     if response.text:
         parsed_data = json.loads(response.text)
         if parsed_data and len(parsed_data) > 0 and parsed_data[0].get('item_name') == '__ERROR__':
-            return jsonify({'error': 'Invalid menu items (use generic names for specialty dishes)'}), 400
-        return jsonify(parsed_data), 200
+            return jsonify({'error': 'Invalid menu items'}), 400
+
+        try:
+            menu_upload = MenuUpload(
+                user_id=current_user.id,
+                upload_name=upload_name.strip(),
+                analysis_result=parsed_data
+            )
+            db.session.add(menu_upload)
+            db.session.commit()
+            return jsonify(parsed_data), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': f'Failed to save menu upload: {str(e)}'}), 500
+
     else:
         return jsonify({'error': 'No response from Gemini'}), 500
+
+
+@llm_bp.route('/menu-uploads', methods=['GET'])
+@token_required
+def get_menu_uploads(current_user):
+    """Get all menu uploads for the authenticated user with optional limit"""
+    limit = request.args.get('limit', type=int)
+
+    try:
+        stmt = select(MenuUpload).filter_by(user_id=current_user.id).order_by(MenuUpload.created_at.desc())
+
+        if limit is not None and limit > 0:
+            stmt = stmt.limit(limit)
+
+        uploads = db.session.scalars(stmt).all()
+
+        return jsonify([upload.to_dict() for upload in uploads]), 200
+    except Exception as e:
+        return jsonify({'error': f'Failed to retrieve menu uploads: {str(e)}'}), 500
+
+
+@llm_bp.route('/menu-uploads/<int:upload_id>', methods=['GET'])
+@token_required
+def get_menu_upload(current_user, upload_id):
+    """Get a specific menu upload by ID"""
+    try:
+        stmt = select(MenuUpload).filter_by(id=upload_id, user_id=current_user.id)
+        upload = db.session.execute(stmt).scalar_one_or_none()
+
+        if not upload:
+            return jsonify({'error': 'Menu upload not found'}), 404
+
+        return jsonify(upload.to_dict()), 200
+    except Exception as e:
+        return jsonify({'error': f'Failed to retrieve menu upload: {str(e)}'}), 500
+
+
+@llm_bp.route('/menu-uploads/<int:upload_id>', methods=['PUT'])
+@token_required
+def rename_menu_upload(current_user, upload_id):
+    """Rename a menu upload"""
+    data = request.get_json()
+
+    if not data or not data.get('upload_name'):
+        return jsonify({'error': 'upload_name is required'}), 400
+
+    new_name = data['upload_name'].strip()
+    if not new_name:
+        return jsonify({'error': 'upload_name cannot be empty'}), 400
+
+    try:
+        stmt = select(MenuUpload).filter_by(id=upload_id, user_id=current_user.id)
+        upload = db.session.execute(stmt).scalar_one_or_none()
+
+        if not upload:
+            return jsonify({'error': 'Menu upload not found'}), 404
+
+        upload.upload_name = new_name
+        db.session.commit()
+
+        return jsonify(upload.to_dict()), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to rename menu upload: {str(e)}'}), 500
+
+
+@llm_bp.route('/menu-uploads/<int:upload_id>', methods=['DELETE'])
+@token_required
+def delete_menu_upload(current_user, upload_id):
+    """Delete a menu upload"""
+    try:
+        stmt = select(MenuUpload).filter_by(id=upload_id, user_id=current_user.id)
+        upload = db.session.execute(stmt).scalar_one_or_none()
+
+        if not upload:
+            return jsonify({'error': 'Menu upload not found'}), 404
+
+        db.session.delete(upload)
+        db.session.commit()
+
+        return jsonify({'message': 'Menu upload deleted successfully'}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to delete menu upload: {str(e)}'}), 500
