@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { menuAPI, type MenuItem } from "../utils/api";
+import { menuAPI, storage, type MenuItem } from "../utils/api";
 import LoadingSpinner from "./LoadingSpinner";
 import ManualInputPopup from "./ManualInputPopup";
 
@@ -16,11 +16,16 @@ const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
       handleUpload(file)
     }
   }
+  
+  const accessToken = storage.getAccessToken();
 
   const handleUpload = async (file: File) => {
     setIsLoading(true);
     try {
-      const data = await menuAPI.processMenuImage(file);
+      if (!accessToken) {
+        throw new Error('Access token is required');
+      }
+      const data = await menuAPI.processMenuImage(accessToken, file);
       console.log('Success:', data);
       onMenuProcessed(data);
     } catch (error) {
@@ -35,7 +40,14 @@ const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {showManualInput && <ManualInputPopup onClose={() => setShowManualInput(false)} />}
+      {showManualInput && (
+        <ManualInputPopup
+          onClose={() => setShowManualInput(false)}
+          onMenuProcessed={onMenuProcessed}
+          onSubmitStart={() => setIsLoading(true)}
+          onSubmitEnd={() => setIsLoading(false)}
+        />
+      )}
       <div className="h-full w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 flex flex-col items-center justify-center gap-[1rem] p-[1rem]">
         <div className="grid grid-cols-[2fr_1fr] gap-[1rem] items-start w-full h-full">
           <div className="h-full w-full rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem]"></div>
