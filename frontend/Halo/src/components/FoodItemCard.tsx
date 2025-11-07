@@ -9,14 +9,14 @@ interface FoodItemCardProps {
 
 const FoodItemCard = ({ food, confidence, allergens }: FoodItemCardProps) => {
   return (
-    <div className="w-9/10 min-h-[8rem] rounded-xl bg-white backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem]">
+    <div className="w-9/10 min-h-[10rem] rounded-xl bg-white backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem]">
       <div className="flex items-center justify-between gap-2 text-black font-sf-pro font-semibold text-md">
         <div className="truncate flex-1 min-w-0">{food}</div>
         <ConfidenceTag confidence={confidence} text={confidence.toString()} />
       </div>
       <div className="grid grid-cols-3 gap-[0.5rem] pt-[1rem] place-items-center">
         {allergens.map(([allergen, severity], index) => (
-          <SeverityTag key={index} severity={severity} text={allergen} />
+          <SeverityTag key={index} severity={severity} text={allergen} fullWidth />
         ))}
       </div>
     </div>

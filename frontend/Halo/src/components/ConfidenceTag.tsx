@@ -29,6 +29,7 @@ const ConfidenceTag = ({ confidence, text }: ConfidenceTagProps) => {
       className={`h-[1.225rem] w-[5rem] rounded-full ${getConfidenceColor(
         confidence
       )} flex items-center justify-center`}
+      title="This tag indicates how confident we are that the identified allergens are correct from a scale of 0 to 10."
     >
       <div
         className={`h-[0.975rem] w-[4.700rem] rounded-full ${getDotColor(

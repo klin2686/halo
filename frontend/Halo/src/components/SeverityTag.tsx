@@ -1,9 +1,10 @@
 interface SeverityTagProps {
   severity: string;
   text: string;
+  fullWidth?: boolean;
 }
 
-const SeverityTag = ({ severity, text }: SeverityTagProps) => {
+const SeverityTag = ({ severity, text, fullWidth = false }: SeverityTagProps) => {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case "severe":
@@ -36,15 +37,18 @@ const SeverityTag = ({ severity, text }: SeverityTagProps) => {
 
   return (
     <div
-      className={`h-[1.125rem] w-[5.25rem] rounded-full ${getSeverityColor(
+      className={`h-[1.125rem] ${
+        fullWidth ? "w-full max-w-[5.5rem]" : "w-[5.5rem]"
+      } rounded-full ${getSeverityColor(
         severity
       )} ${
         severity === "none" ? "" : ""
-      } flex items-center p-2 gap-[0.25rem]`}
+      } flex items-center p-2 gap-[0.25rem] cursor-default`}
+      title={text}
     >
-      <div className={`w-2 h-2 rounded-full ${getDotColor(severity)}`} />
-      <div className="flex-1 flex items-center justify-center">
-        <span className="text-sm text-black font-light font-sf-pro">
+      <div className={`w-2 h-2 rounded-full flex-shrink-0 ${getDotColor(severity)}`} />
+      <div className="flex-1 flex items-center justify-center min-w-0">
+        <span className="text-sm text-black font-light font-sf-pro truncate pointer-events-none">
           {text}
         </span>
       </div>
