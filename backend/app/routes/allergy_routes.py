@@ -133,4 +133,4 @@ def delete_allergy(current_user):
 
     db.session.delete(user_allergy)
     db.session.commit()
-    return '', 204
+    return jsonify({'message': 'Ok'}), 200
