@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { menuAPI, type MenuItem } from "../utils/api";
 import LoadingSpinner from "./LoadingSpinner";
+import ManualInputPopup from "./ManualInputPopup";
 
 interface RestaurantInputProps {
   onMenuProcessed: (items: MenuItem[]) => void;
@@ -8,6 +9,7 @@ interface RestaurantInputProps {
 
 const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showManualInput, setShowManualInput] = useState(false);
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -33,6 +35,7 @@ const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
+      {showManualInput && <ManualInputPopup onClose={() => setShowManualInput(false)} />}
       <div className="h-full w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 flex flex-col items-center justify-center gap-[1rem] p-[1rem]">
         <div className="grid grid-cols-[2fr_1fr] gap-[1rem] items-start w-full h-full">
           <div className="h-full w-full rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem]"></div>
@@ -66,7 +69,10 @@ const RestaurantInput = ({ onMenuProcessed }: RestaurantInputProps) => {
                 />
               </svg>
             </button>
-            <button className="justify-between w-full h-full backdrop-blur-sm border border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl">
+            <button
+              onClick={() => setShowManualInput(true)}
+              className="cursor-pointer justify-between w-full h-full backdrop-blur-sm border border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl"
+            >
               <span className="text-black text-xl font-sf-pro w-32">Manual Input</span>
               <svg
                 width="32"
