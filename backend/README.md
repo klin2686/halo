@@ -9,10 +9,22 @@ This directory contains the Flask-based backend API for the Halo food-allergy ap
   cd backend
   ```
 
-- **Virtual environment:** Create a python virtual environment before installing dependencies
+- **Create virtual environment:** Create a python virtual environment before installing dependencies
 
   ```bash
   python -m venv .venv
+  ```
+
+- **Activate the virtual environment:**
+
+  On Windows:
+  ```bash
+  .venv\Scripts\activate
+  ```
+
+  On macOS/Linux:
+  ```bash
+  source .venv/bin/activate
   ```
 
 - **Install dependencies:**
