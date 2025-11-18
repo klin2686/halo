@@ -35,7 +35,7 @@ This directory contains the Flask-based backend API for the Halo food-allergy ap
 
 - **Environment:** Make a copy of `.env.example` and rename the file to `.env`, then replace the values as appropriate
 
-- **Run the app:**: `python run.py` — the API will be available at `http://localhost:5000`
+- **Run the app:** `python run.py` — the API will be available at `http://localhost:5001`
 
 **Quick dev tips**:
 - Use a virtual environment (venv/conda) to keep dependencies isolated.
