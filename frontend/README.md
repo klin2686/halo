@@ -18,30 +18,34 @@ React + TypeScript frontend for the Halo allergy management application.
 
 ## Setup
 
-1. **Navigate to the frontend directory**
+2. **Navigate to the frontend directory**
+
    ```bash
    cd frontend
    ```
 
-2. **Install dependencies**
+3. **Install dependencies**
+
    ```bash
    npm install
    ```
 
-3. **Configure environment variables**
-   
+4. **Configure environment variables**
+
    Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
    ```
-   
+   *Note: On windows, use `copy` instead of `cp`*
+
    Update the values:
    - `VITE_API_URL` - Backend API URL (default: `http://localhost:5001/api`)
-   - `GOOGLE_CLIENT_ID` - Your Google OAuth Client ID
+   - `VITE_GOOGLE_CLIENT_ID` - Your Google OAuth Client ID
 
 ## Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -51,6 +55,7 @@ The app will be available at `http://localhost:5173` (or another port if 5173 is
 ## Build
 
 Create a production build:
+
 ```bash
 npm run build
 ```
@@ -58,6 +63,7 @@ npm run build
 Output will be in the `dist/` directory.
 
 Preview the production build locally:
+
 ```bash
 npm run preview
 ```
@@ -74,16 +80,12 @@ npm run preview
 ```
 src/
 ├── components/      # React components
-│   ├── Account.tsx
-│   ├── Dashboard.tsx
-│   ├── AllergyList.tsx
-│   ├── FoodItems.tsx
-│   └── ...
-├── contexts/        # React contexts (Auth, etc.)
-├── utils/          # Utility functions and API client
-├── assets/         # Static assets
-├── App.tsx         # Main app component
-└── main.tsx        # Entry point
+├── contexts/        # React contexts
+├── hooks/           # Custom React hooks
+├── utils/           # Utility functions
+├── assets/          # Static assets
+├── App.tsx          # Main app component
+└── main.tsx         # Entry point
 ```
 
 ## Key Features

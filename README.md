@@ -49,21 +49,16 @@ halo/
 ├── backend/          # Flask API server
 │   ├── app/          # Application code (models, routes, utils)
 │   ├── run.py        # Server entry point
+|   ├── seed_db.py    # Script to populate database with initial allergen data
 │   └── README.md     # Backend setup instructions
-├── frontend/         # React application
-│   ├── src/          # Source code (components, contexts, utils)
-│   └── README.md     # Frontend setup instructions
-└── assets/           # Project assets (images, etc.)
+└── frontend/         # React application
+    ├── src/          # Source code (components, contexts, utils)
+    └── README.md     # Frontend setup instructions
 ```
 
 ## Getting Started
 
 Detailed setup and run instructions are available in each directory:
-
-- **Backend Setup**: See [backend/README.md](backend/README.md)
-- **Frontend Setup**: See [frontend/README.md](frontend/README.md)
-
-### Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -71,30 +66,18 @@ Detailed setup and run instructions are available in each directory:
    cd halo
    ```
 
-2. **Set up the backend** (see [backend/README.md](backend/README.md) for details)
-   ```bash
-   cd backend
-   python -m venv .venv
-   # Activate virtual environment
-   pip install -r requirements.txt
-   # Configure .env file
-   python run.py
-   ```
+2. **Set up frontend and backend**
 
-3. **Set up the frontend** (see [frontend/README.md](frontend/README.md) for details)
-   ```bash
-   cd frontend
-   npm install
-   # Configure .env file
-   npm run dev
-   ```
+   Backend Setup: See [backend/README.md](backend/README.md)
+
+   Frontend Setup: See [frontend/README.md](frontend/README.md)
 
 ## How It Works
 
 1. **Sign in** with your Google account or email address
 2. **Set up your allergy profile** by selecting your food allergies
 3. **Upload a menu photo** or manually enter menu items
-4. **Review the analysis** - Halo identifies allergens in each dish with confidence scores
+4. **Review your analysis** by viewing allergens and confidence scores highlighted for each dish
 5. **Save menus** for future reference
 
 ## Use Cases
