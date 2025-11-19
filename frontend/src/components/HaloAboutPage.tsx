@@ -1,10 +1,14 @@
 import HaloAbout from "./About";
 import HaloAboutGrid from "./HaloAboutGrid";
 
-const HaloAboutPage = () => {
+interface HaloAboutPageProps {
+  onSignIn: () => void;
+}
+
+const HaloAboutPage = ({ onSignIn }: HaloAboutPageProps) => {
   return (
     <>
-      <HaloAbout />
+      <HaloAbout onSignIn={onSignIn} />
       <HaloAboutGrid />
     </>
   );

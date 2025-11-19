@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import backgroundImage from "../assets/background.jpg";
 import haloLogo from "../assets/haloLogo.svg";
 
-const About = () => {
+interface AboutProps {
+  onSignIn: () => void;
+}
+
+const About = ({ onSignIn }: AboutProps) => {
   const scrollToAboutGrid = () => {
     const element = document.getElementById("halo-about-grid");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -109,7 +113,7 @@ const About = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-12"
+          className="mb-8"
         >
           <motion.div
             className="inline-flex gap-4 bg-white/50 backdrop-blur-sm rounded-full px-8 py-4 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50"
@@ -131,6 +135,18 @@ const About = () => {
             </div>
           </motion.div>
         </motion.div>
+
+        <motion.button
+          onClick={onSignIn}
+          className="cursor-pointer px-12 py-4 bg-gradient-to-r from-[#56BECC] to-sky-500 rounded-full text-white font-sf-pro font-bold text-lg shadow-2xl mb-8 outline outline-1 outline-offset-[-0.0625rem] outline-white/50"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(86, 190, 204, 0.5)" }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Sign In
+        </motion.button>
 
         <motion.button
           onClick={scrollToAboutGrid}
