@@ -21,7 +21,7 @@ const SideBarElement = ({
       {active && (
         <motion.div
           layoutId="sidebarHighlight"
-          className="absolute inset-y-2 inset-x-2 bg-white/50 backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 rounded-lg shadow-xl"
+          className="absolute inset-y-2 inset-x-2 bg-white/10 backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 rounded-lg shadow-xl"
           initial={false}
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
         />
