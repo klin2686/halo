@@ -29,9 +29,9 @@ const FoodItemCard = ({ food, confidence, allergens, index = 0 }: FoodItemCardPr
         <div className="truncate flex-1 min-w-0">{food}</div>
         <ConfidenceTag confidence={confidence} text={confidence.toString()} />
       </div>
-      <div className="grid grid-cols-3 gap-[0.5rem] pt-[1rem] place-items-center">
+      <div className="flex flex-wrap gap-[0.5rem] pt-[1rem] justify-start">
         {allergens.map(([allergen, severity], idx) => (
-          <SeverityTag key={idx} severity={severity} text={allergen} fullWidth index={idx} />
+          <SeverityTag key={idx} severity={severity} text={allergen} index={idx} />
         ))}
       </div>
     </motion.div>

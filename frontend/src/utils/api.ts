@@ -222,6 +222,15 @@ export const menuAPI = {
       },
     });
   },
+
+  deleteMenuHistory: async (accessToken: string, uploadId: number): Promise<{ message: string }> => {
+    return fetchAPI<{ message: string }>(`/menu-uploads/${uploadId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
 };
 
 // Allergy API

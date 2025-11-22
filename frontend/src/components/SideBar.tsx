@@ -42,38 +42,51 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
   }, [currentScreen, activeElement]);
 
   useEffect(() => {
-    const activeRef = elementsRef.current[activeElement];
-    if (activeRef) {
-      setIsLifted(false);
+    const updateIndicator = () => {
+      const activeRef = elementsRef.current[activeElement];
+      if (activeRef) {
+        setIsLifted(false);
 
-      setIndicatorStyle({
-        top: activeRef.offsetTop + 8,
-        height: activeRef.offsetHeight - 16,
-      });
+        setIndicatorStyle({
+          top: activeRef.offsetTop + 8,
+          height: activeRef.offsetHeight - 16,
+        });
+        
+        // Ensure initialized is true once we have a position
+        setIsInitialized(true);
 
-      const timeoutId = setTimeout(() => {
-        setIsLifted(true);
-      }, 500);
+        const timeoutId = setTimeout(() => {
+          setIsLifted(true);
+        }, 500);
 
-      return () => clearTimeout(timeoutId);
+        return () => clearTimeout(timeoutId);
+      }
+    };
+
+    const cleanup = updateIndicator();
+
+    // Add resize observer to handle window resizing or layout shifts
+    const resizeObserver = new ResizeObserver(() => {
+      const activeRef = elementsRef.current[activeElement];
+      if (activeRef) {
+        setIndicatorStyle({
+          top: activeRef.offsetTop + 8,
+          height: activeRef.offsetHeight - 16,
+        });
+      }
+    });
+
+    if (elementsRef.current[activeElement]) {
+      resizeObserver.observe(elementsRef.current[activeElement]!);
     }
+
+    return () => {
+      if (cleanup) cleanup();
+      resizeObserver.disconnect();
+    };
   }, [activeElement]);
 
-  useEffect(() => {
-    const dashboardRef = elementsRef.current["Dashboard"];
-    if (dashboardRef) {
-      setIndicatorStyle({
-        top: dashboardRef.offsetTop + 8,
-        height: dashboardRef.offsetHeight - 16,
-      });
-      setIsInitialized(true);
-      const timeoutId = setTimeout(() => {
-        setIsLifted(true);
-      }, 100);
 
-      return () => clearTimeout(timeoutId);
-    }
-  }, []);
 
   return (
     <motion.div

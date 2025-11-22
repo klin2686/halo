@@ -97,7 +97,7 @@ const MiniHistory = ({ onHistoryItemClick, onSeeAllClick }: MiniHistoryProps) =>
 
   return (
     <div className="h-full w-full flex flex-col gap-2">
-      <div className="text-black/60 text-xs font-sf-pro font-semibold uppercase tracking-wide mb-1">
+      <div className="text-black/60 text-xs font-sf-pro font-semibold uppercase tracking-wide">
         Recent Uploads
       </div>
       <div className="flex-1 overflow-y-auto flex flex-col gap-2">
@@ -137,13 +137,13 @@ const MiniHistory = ({ onHistoryItemClick, onSeeAllClick }: MiniHistoryProps) =>
             </div>
           </button>
         ))}
+        <button
+          onClick={onSeeAllClick}
+          className="w-full text-center text-black/50 hover:text-black/70 text-xs font-sf-pro transition-colors cursor-pointer"
+        >
+          See all
+        </button>
       </div>
-      <button
-        onClick={onSeeAllClick}
-        className="w-full text-center py-2 text-black/50 hover:text-black/70 text-xs font-sf-pro transition-colors cursor-pointer"
-      >
-        See all
-      </button>
     </div>
   );
 };

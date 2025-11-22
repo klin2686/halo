@@ -77,16 +77,16 @@ const RestaurantInput = ({ onMenuProcessed, onSeeAllClick }: RestaurantInputProp
           onSubmitEnd={() => setIsLoading(false)}
         />
       )}
-      <div className="h-full w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 flex flex-col items-center justify-center gap-[1rem] p-[1rem]">
-        <div className="grid grid-cols-[2fr_1fr] gap-[1rem] items-start w-full h-full">
-          <div className="h-full w-full rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem]">
+      <div className="h-fit w-full bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm border border-white/50 flex flex-col gap-[1rem] p-[0.9rem]">
+        <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1fr] gap-[1rem] items-start w-full lg:h-full">
+          <div className="h-fit w-full rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.2rem] min-h-[200px] max-h-[13rem] lg:min-h-0 lg:h-[13rem]">
             <MiniHistory
               key={refreshKey}
               onHistoryItemClick={handleHistoryItemClick}
               onSeeAllClick={onSeeAllClick}
             />
           </div>
-          <div className="grid grid-rows-2 gap-[1rem] items-start w-full h-full">
+          <div className="flex flex-col md:flex-row lg:flex-col gap-[1rem] items-start w-full h-full lg:justify-center">
             <input
               type="file"
               accept="image/*"
@@ -96,19 +96,20 @@ const RestaurantInput = ({ onMenuProcessed, onSeeAllClick }: RestaurantInputProp
             />
             <motion.button
               onClick={() => document.getElementById('file-input')?.click()}
-              className="cursor-pointer justify-between w-full h-full border backdrop-blur-sm border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl"
+              className="cursor-pointer justify-between w-full h-16 lg:h-24 border backdrop-blur-sm border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl px-4"
               initial="initial"
               whileHover="hover"
               whileTap="tap"
               variants={buttonGlowVariants}
             >
-              <span className="text-black text-xl font-sf-pro w-32">Upload Menu</span>
+              <span className="text-black text-lg lg:text-xl font-sf-pro">Upload Menu</span>
               <svg
-                width="32"
-                height="32"
+                width="24"
+                height="24"
                 viewBox="-1 -1 34 34"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="lg:w-[32px] lg:h-[32px]"
               >
                 <circle cx="16" cy="16" r="16" fill="#56BECC80" fillOpacity="1" />
                 <path
@@ -122,19 +123,20 @@ const RestaurantInput = ({ onMenuProcessed, onSeeAllClick }: RestaurantInputProp
             </motion.button>
             <motion.button
               onClick={() => setShowManualInput(true)}
-              className="cursor-pointer justify-between w-full h-full backdrop-blur-sm border border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl"
+              className="cursor-pointer justify-between w-full h-16 lg:h-24 backdrop-blur-sm border border-white/50 rounded-2xl flex items-center justify-center gap-[0.75rem] shadow-xl px-4"
               initial="initial"
               whileHover="hover"
               whileTap="tap"
               variants={buttonGlowVariants}
             >
-              <span className="text-black text-xl font-sf-pro w-32">Manual Input</span>
+              <span className="text-black text-lg lg:text-xl font-sf-pro">Manual Input</span>
               <svg
-                width="32"
-                height="32"
+                width="24"
+                height="24"
                 viewBox="-1 -1 34 34"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="lg:w-[32px] lg:h-[32px]"
               >
                 <circle cx="16" cy="16" r="16" fill="#56BECC80" fillOpacity="1" />
                 <path
