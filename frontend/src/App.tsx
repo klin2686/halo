@@ -43,15 +43,15 @@ const App = () => {
         initial="hidden"
         animate="visible"
         variants={pageLoadVariants}
-        className="relative z-10 h-full w-full flex flex-col p-[1rem] lg:p-[2rem] gap-[1rem]"
+        className="relative z-10 h-full w-full flex flex-col p-[1rem] md:p-[1.5rem] lg:p-[2rem] gap-[1rem]"
       >
         <TopBar onMenuClick={() => setIsSidebarOpen(true)} />
-        
+
         <div className="flex-1 flex gap-[1rem] min-h-0 relative">
           {/* Desktop Sidebar */}
           <div 
-            className="hidden lg:block w-[minmax(250px,320px)] flex-shrink-0"
-            style={{ width: "clamp(250px, 20vw, 320px)" }}
+            className="hidden lg:block w-[minmax(280px,320px)] flex-shrink-0"
+            style={{ width: "clamp(280px, 20vw, 320px)" }}
           >
             <SideBar
               currentScreen={currentScreen}
@@ -75,7 +75,7 @@ const App = () => {
                   animate={{ x: 0 }}
                   exit={{ x: -300 }}
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="fixed inset-y-0 left-0 z-50 w-[280px] bg-white/90 backdrop-blur-xl shadow-2xl p-[1rem] lg:hidden"
+                  className="fixed inset-y-0 left-0 z-50 w-[320px] bg-white/90 backdrop-blur-xl shadow-2xl p-[1rem] lg:hidden"
                 >
                   <div className="h-full flex flex-col">
                      <div className="flex justify-end mb-4">

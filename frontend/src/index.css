@@ -3,6 +3,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities"; */
 
+@theme {
+  --breakpoint-sm: 400px;
+  --breakpoint-md: 500px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
 @font-face {
   font-family: 'SF_Pro';
   src: url('/fonts/SF-Pro-Rounded-Regular.otf') format('opentype'),

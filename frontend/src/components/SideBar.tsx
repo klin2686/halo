@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "../hooks/useAuth";
 import SideBarProfile from "./SideBarProfile";
@@ -20,11 +20,7 @@ interface SideBarProps {
 const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
   const { user, logout } = useAuth();
   const [activeElement, setActiveElement] = useState<string>(currentScreen || "Dashboard");
-  const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isLifted, setIsLifted] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const elementsRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleSignOut = () => {
     logout();
@@ -35,58 +31,9 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
     console.log(isDarkMode ? "light mode" : "dark mode");
   };
 
-  useEffect(() => {
-    if (currentScreen && currentScreen !== activeElement) {
-      setActiveElement(currentScreen);
-    }
-  }, [currentScreen, activeElement]);
-
-  useEffect(() => {
-    const updateIndicator = () => {
-      const activeRef = elementsRef.current[activeElement];
-      if (activeRef) {
-        setIsLifted(false);
-
-        setIndicatorStyle({
-          top: activeRef.offsetTop + 8,
-          height: activeRef.offsetHeight - 16,
-        });
-        
-        // Ensure initialized is true once we have a position
-        setIsInitialized(true);
-
-        const timeoutId = setTimeout(() => {
-          setIsLifted(true);
-        }, 500);
-
-        return () => clearTimeout(timeoutId);
-      }
-    };
-
-    const cleanup = updateIndicator();
-
-    // Add resize observer to handle window resizing or layout shifts
-    const resizeObserver = new ResizeObserver(() => {
-      const activeRef = elementsRef.current[activeElement];
-      if (activeRef) {
-        setIndicatorStyle({
-          top: activeRef.offsetTop + 8,
-          height: activeRef.offsetHeight - 16,
-        });
-      }
-    });
-
-    if (elementsRef.current[activeElement]) {
-      resizeObserver.observe(elementsRef.current[activeElement]!);
-    }
-
-    return () => {
-      if (cleanup) cleanup();
-      resizeObserver.disconnect();
-    };
-  }, [activeElement]);
-
-
+  if (currentScreen && currentScreen !== activeElement) {
+    setActiveElement(currentScreen);
+  }
 
   return (
     <motion.div
@@ -96,21 +43,6 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
       className="h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y overflow-x"
     >
       <div className="flex flex-col justify-between h-full p-[1rem]">
-        {isInitialized && (
-          <div
-            className={`absolute backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 rounded-lg pointer-events-none transition-all ease-in-out duration-500 ${
-              isLifted ? "shadow-xl" : ""
-            }`}
-            style={{
-              top: `${indicatorStyle.top}px`,
-              height: `${indicatorStyle.height}px`,
-              left: "1.5rem",
-              right: "1.5rem",
-              transform: isLifted ? "translateY(-0.25rem)" : "translateY(0)",
-            }}
-          />
-        )}
-
         <div className="flex flex-col flex-1 min-h-0">
           <SideBarProfile
             picture={user?.profile_picture || defaultUser}
@@ -120,72 +52,44 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
             <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
           </div>
 
-          <div
-            ref={(el) => {
-              elementsRef.current["Dashboard"] = el;
+          <SideBarElement
+            element="Dashboard"
+            logo={sidebarDashboard}
+            onClick={() => {
+              setActiveElement("Dashboard");
+              onScreenChange?.("Dashboard");
             }}
-          >
-            <SideBarElement
-              element="Dashboard"
-              logo={sidebarDashboard}
-              onClick={() => {
-                setActiveElement("Dashboard");
-                onScreenChange?.("Dashboard");
-              }}
-              active={activeElement === "Dashboard"}
-              isLifted={isLifted}
-            />
-          </div>
-          <div
-            ref={(el) => {
-              elementsRef.current["History"] = el;
+            active={activeElement === "Dashboard"}
+          />
+          <SideBarElement
+            element="History"
+            logo={sidebarHistory}
+            onClick={() => {
+              setActiveElement("History");
+              onScreenChange?.("History");
             }}
-          >
-            <SideBarElement
-              element="History"
-              logo={sidebarHistory}
-              onClick={() => {
-                setActiveElement("History");
-                onScreenChange?.("History");
-              }}
-              active={activeElement === "History"}
-              isLifted={isLifted}
-            />
-          </div>
+            active={activeElement === "History"}
+          />
 
           <br></br>
           <div className="flex justify-center w-full">
             <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
           </div>
-          <div
-            ref={(el) => {
-              elementsRef.current["Account"] = el;
+          <SideBarElement
+            element="Account"
+            logo={sidebarAccount}
+            onClick={() => {
+              setActiveElement("Account");
+              onScreenChange?.("Account");
             }}
-          >
-            <SideBarElement
-              element="Account"
-              logo={sidebarAccount}
-              onClick={() => {
-                setActiveElement("Account");
-                onScreenChange?.("Account");
-              }}
-              active={activeElement === "Account"}
-              isLifted={isLifted}
-            />
-          </div>
-          <div
-            ref={(el) => {
-              elementsRef.current["Sign Out"] = el;
-            }}
-          >
-            <SideBarElement
-              element="Sign Out"
-              logo={sidebarSignOut}
-              onClick={handleSignOut}
-              active={activeElement === "Sign Out"}
-              isLifted={isLifted}
-            />
-          </div>
+            active={activeElement === "Account"}
+          />
+          <SideBarElement
+            element="Sign Out"
+            logo={sidebarSignOut}
+            onClick={handleSignOut}
+            active={activeElement === "Sign Out"}
+          />
         </div>
 
         <div className="flex flex-col mt-auto">

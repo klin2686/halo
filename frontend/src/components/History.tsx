@@ -98,7 +98,7 @@ const History = () => {
 
   return (
     <>
-      <div className="h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y overflow-x">
+      <div className="h-full w-full flex flex-col relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y-auto">
         <div className="pt-[2.5rem] px-[2rem] flex items-center justify-between w-full">
           <div className="w-[3rem]"></div> {/* Spacer for centering */}
           <div className="text-black font-sf-pro font-semibold text-3xl">
@@ -144,10 +144,10 @@ const History = () => {
         </div>
         <br></br>
         <div className="flex justify-center w-full">
-          <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
+          <hr className="w-full mx-[1.2rem] md:mx-[2.2rem] pt-[1rem] opacity-40"></hr>
         </div>
         <div className="flex justify-center w-full">
-          <div className="w-9/10 justify-center">
+          <div className="w-full px-[1rem] md:px-[2rem]">
             {isLoading && (
               <div className="text-center py-4">Loading...</div>
             )}

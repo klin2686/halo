@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import RestaurantInput from "./RestaurantInput";
 import FoodItemsSection from "./FoodItems";
 import AllergyBar from "./AllergyBar";
@@ -26,21 +27,37 @@ const Dashboard = ({ onNavigateToHistory }: DashboardProps) => {
   return (
     <div className="flex flex-col h-auto lg:h-full min-h-0 gap-[1rem]">
       {/* Mobile Tab Toggles */}
-      <div className="flex lg:hidden bg-white/50 p-1 rounded-xl backdrop-blur-sm shrink-0">
+      <div className="flex lg:hidden bg-white/50 p-1 rounded-xl backdrop-blur-sm shrink-0 relative">
         <button
           onClick={() => setActiveMobileTab('menu')}
-          className={`flex-1 py-2 rounded-lg font-sf-pro font-semibold transition-all ${
-            activeMobileTab === 'menu' ? 'bg-white shadow-sm text-black' : 'text-black/50'
-          }`}
+          className="relative flex-1 py-2 rounded-lg font-sf-pro font-semibold transition-colors z-10"
+          style={{
+            color: activeMobileTab === 'menu' ? 'black' : 'rgba(0,0,0,0.5)'
+          }}
         >
+          {activeMobileTab === 'menu' && (
+            <motion.div
+              layoutId="activeTab"
+              className="absolute inset-0 bg-white shadow-sm rounded-lg -z-10"
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
           Menu
         </button>
         <button
           onClick={() => setActiveMobileTab('allergies')}
-          className={`flex-1 py-2 rounded-lg font-sf-pro font-semibold transition-all ${
-            activeMobileTab === 'allergies' ? 'bg-white shadow-sm text-black' : 'text-black/50'
-          }`}
+          className="relative flex-1 py-2 rounded-lg font-sf-pro font-semibold transition-colors z-10"
+          style={{
+            color: activeMobileTab === 'allergies' ? 'black' : 'rgba(0,0,0,0.5)'
+          }}
         >
+          {activeMobileTab === 'allergies' && (
+            <motion.div
+              layoutId="activeTab"
+              className="absolute inset-0 bg-white shadow-sm rounded-lg -z-10"
+              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+            />
+          )}
           My Allergies
         </button>
       </div>

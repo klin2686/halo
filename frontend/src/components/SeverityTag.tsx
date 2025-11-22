@@ -48,7 +48,7 @@ const SeverityTag = ({ severity, text, fullWidth = false, index = 0 }: SeverityT
         ease: [0.4, 0, 0.2, 1],
       }}
       className={`h-[1.125rem] ${
-        fullWidth ? "w-full max-w-[5.5rem]" : "w-[5.5rem]"
+        fullWidth ? "w-full max-w-[5.3rem]" : "w-[5.3rem]"
       } rounded-full ${getSeverityColor(
         severity
       )} flex items-center p-2 gap-[0.25rem] cursor-default`}
