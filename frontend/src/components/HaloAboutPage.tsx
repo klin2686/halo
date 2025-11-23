@@ -1,5 +1,5 @@
-import HaloAbout from "./About";
-import HaloAboutGrid from "./HaloAboutGrid";
+import About from "./About";
+import AboutGrid from "./AboutGrid";
 import backgroundImage from "../assets/background.jpg";
 
 interface HaloAboutPageProps {
@@ -14,8 +14,8 @@ const HaloAboutPage = ({ onSignIn }: HaloAboutPageProps) => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <HaloAbout onSignIn={onSignIn} />
-      <HaloAboutGrid />
+      <About onSignIn={onSignIn} />
+      <AboutGrid onSignIn={onSignIn}/>
     </div>
   );
 };

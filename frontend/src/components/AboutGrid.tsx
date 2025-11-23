@@ -4,7 +4,11 @@ import { motion, type Variants } from "framer-motion";
 // import haloMenuScan from "../assets/halo-menu-scan.png";
 // import haloAllergyMatch from "../assets/halo-allergy-match.png";
 
-const HaloAboutGrid = () => {
+interface AboutGridProps {
+  onSignIn: () => void;
+}
+
+const AboutGrid = ({ onSignIn }: AboutGridProps) => {
   // Animation variants for fade-in from left
   const fadeInLeft: Variants = {
     hidden: { opacity: 0, x: -50 },
@@ -257,6 +261,7 @@ const HaloAboutGrid = () => {
               enjoying their favorite restaurants.
             </p>
             <motion.button
+              onClick={onSignIn}
               className="bg-[#56BECC] hover:bg-[#56BECC]/80 text-white font-sf-pro font-bold text-base md:text-lg px-8 py-2 sm:py-3 md:py-4 rounded-xl shadow-xl transition-all cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -270,4 +275,4 @@ const HaloAboutGrid = () => {
   );
 };
 
-export default HaloAboutGrid;
+export default AboutGrid;
