@@ -9,7 +9,7 @@ interface HaloAboutPageProps {
 const HaloAboutPage = ({ onSignIn }: HaloAboutPageProps) => {
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat bg-fixed"
+      className="w-full overflow-x-hidden bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}

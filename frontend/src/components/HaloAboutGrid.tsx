@@ -76,13 +76,13 @@ const HaloAboutGrid = () => {
               </motion.div>
               <motion.h2
                 variants={childVariants}
-                className="text-6xl font-bold text-black mb-6 font-sf-pro hover:text-[#56BECC] transition-colors duration-300"
+                className="text-3xl min-[355px]:text-4xl sm:text-5xl min-[550px]:text-6xl font-bold text-black mb-6 font-sf-pro hover:text-[#56BECC] transition-colors duration-300"
               >
                 AI-Powered Menu Intelligence
               </motion.h2>
               <motion.p
                 variants={childVariants}
-                className="text-xl text-black/70 font-sf-pro mb-6"
+                className="text-sm min-[355px]:text-base sm:text-lg md:text-xl text-black/70 font-sf-pro mb-6"
               >
                 Simply upload a photo of any restaurant menu or manually enter
                 dishes, and let Google Gemini AI do the heavy lifting. Our
@@ -92,24 +92,24 @@ const HaloAboutGrid = () => {
               </motion.p>
               <motion.p
                 variants={childVariants}
-                className="text-lg text-black/60 font-sf-pro"
+                className="text-sm min-[355px]:text-base sm:text-lg md:text-xl text-black/60 font-sf-pro"
               >
                 No more guessing games or awkward questions – know what's safe
                 before you order.
               </motion.p>
               <motion.div variants={childVariants} className="mt-6 flex gap-3">
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
-                  <span className="text-[#56BECC] font-sf-pro font-medium text-sm">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                  <span className="text-[#2D97B3] font-sf-pro font-medium text-sm">
                     Photo Upload
                   </span>
                 </div>
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
-                  <span className="text-[#56BECC] font-sf-pro font-medium text-sm">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                  <span className="text-[#2D97B3] font-sf-pro font-medium text-sm">
                     Manual Entry
                   </span>
                 </div>
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
-                  <span className="text-[#56BECC] font-sf-pro font-medium text-sm">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                  <span className="text-[#2D97B3] font-sf-pro font-medium text-sm">
                     Instant Results
                   </span>
                 </div>
@@ -190,17 +190,17 @@ const HaloAboutGrid = () => {
                 this safe.
               </motion.p>
               <motion.div variants={childVariants} className="mt-6 flex gap-3">
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
                   <span className="text-sky-500 font-sf-pro font-medium text-sm">
                     Smart Matching
                   </span>
                 </div>
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
                   <span className="text-sky-500 font-sf-pro font-medium text-sm">
                     Color Coding
                   </span>
                 </div>
-                <div className="bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
+                <div className="text-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl outline outline-1 outline-offset-[-0.0625rem] outline-white/50">
                   <span className="text-sky-500 font-sf-pro font-medium text-sm">
                     Easy Search
                   </span>
