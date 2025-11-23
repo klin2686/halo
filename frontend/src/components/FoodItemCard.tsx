@@ -23,7 +23,7 @@ const FoodItemCard = ({ food, confidence, allergens, index = 0 }: FoodItemCardPr
       whileHover="hover"
       whileTap="tap"
       variants={foodItemHoverVariants}
-      className="w-9/10 min-h-[10rem] rounded-xl bg-white backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem] cursor-pointer"
+      className="w-9/10 min-h-[10rem] min-w-[10rem] rounded-xl bg-white backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem] cursor-pointer"
     >
       <div className="flex items-center justify-between gap-2 text-black font-sf-pro font-semibold text-md">
         <div className="truncate flex-1 min-w-0">{food}</div>

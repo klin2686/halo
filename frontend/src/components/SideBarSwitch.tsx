@@ -15,7 +15,7 @@ const SideBarSwitch = ({
 }: SideBarSwitchProps) => {
   return (
     <div
-      className="relative flex flex-row items-center justify-between cursor-pointer space-x-[1rem]"
+      className="relative flex flex-row items-center justify-between cursor-pointer space-x-[1rem] overflow-y-auto"
       onClick={onToggle}
     >
       <div className="flex flex-row items-center space-x-[1rem]">

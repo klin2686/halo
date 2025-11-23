@@ -40,9 +40,9 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
       initial="hidden"
       animate="visible"
       variants={sidebarVariants}
-      className="h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y overflow-x"
+      className="h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y"
     >
-      <div className="flex flex-col justify-between h-full p-[1rem]">
+      <div className="flex flex-col justify-between h-full p-[1rem] overflow-y-auto">
         <div className="flex flex-col flex-1 min-h-0">
           <SideBarProfile
             picture={user?.profile_picture || defaultUser}

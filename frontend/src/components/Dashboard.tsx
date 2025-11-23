@@ -63,7 +63,7 @@ const Dashboard = ({ onNavigateToHistory }: DashboardProps) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(300px,400px)] gap-[1rem] min-h-0 flex-1">
-        <div className={`flex-col gap-[1rem] min-h-0 ${activeMobileTab === 'menu' ? 'flex' : 'hidden lg:flex'}`}>
+        <div className={`flex-col pb-[1rem] lg:pb-0 gap-[1rem] min-h-0 ${activeMobileTab === 'menu' ? 'flex' : 'hidden lg:flex'}`}>
           <RestaurantInput
             onMenuProcessed={setMenuItems}
             onSeeAllClick={onNavigateToHistory}
@@ -73,7 +73,7 @@ const Dashboard = ({ onNavigateToHistory }: DashboardProps) => {
             allergies={userAllergies}
           />
         </div>
-        <div className={`min-h-[300px] lg:h-full ${activeMobileTab === 'allergies' ? 'block' : 'hidden lg:block'}`}>
+        <div className={`min-h-[300px] pb-[1rem] lg:pb-0 lg:h-full ${activeMobileTab === 'allergies' ? 'block' : 'hidden lg:block'}`}>
            <AllergyBar onAllergiesLoaded={setUserAllergies} />
         </div>
       </div>

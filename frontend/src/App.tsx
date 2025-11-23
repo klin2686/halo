@@ -37,18 +37,18 @@ const App = () => {
 
   return (
     <div
-      className="h-screen w-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed relative overflow-y-auto lg:overflow-hidden"
+      className="h-screen min-h-0 w-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed relative"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className="absolute inset-0 bg-white/25 z-0"></div>
+      <div className="fixed inset-0 bg-white/25 z-0"></div>
 
       <motion.div
         initial="hidden"
         animate="visible"
         variants={pageLoadVariants}
-        className="relative z-10 h-full w-full flex flex-col p-[1rem] md:p-[1.5rem] lg:p-[2rem] gap-[1rem]"
+        className="relative min-h-0 z-10 flex-1 w-full flex flex-col p-[1rem] md:p-[1.5rem] lg:p-[2rem] gap-[1rem] overflow-y-auto"
       >
         <TopBar
           onMenuClick={() => setIsSidebarOpen(true)}
@@ -85,7 +85,7 @@ const App = () => {
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
                   className="fixed inset-y-0 left-0 z-50 w-[320px] bg-white/90 backdrop-blur-xl shadow-2xl p-[1rem] lg:hidden"
                 >
-                  <div className="h-full flex flex-col">
+                  <div className="h-full flex flex-col overflow-y-auto">
                      <div className="flex justify-end mb-4">
                         <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-gray-600">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
