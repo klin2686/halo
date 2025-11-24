@@ -44,12 +44,12 @@ const HistoryCard = ({ id, name, dateTime, onCardClick, editActive, onRemove, is
         <path d="M7 12h10" />
       </motion.svg>
       <div
-        className="flex-1 rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem] transition-all ease-in-out duration-300 hover:scale-101 active:scale-99 cursor-pointer"
+        className="flex-1 rounded-xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 p-[1.5rem] my-[1rem] transition-all ease-in-out duration-300 hover:scale-101 active:scale-99 cursor-pointer overflow-x-hidden"
         onClick={onCardClick}
       >
-        <div className="flex items-center justify-between">
-          <div className="text-black font-sf-pro font-semibold text-xl">{name}</div>
-          <div className="text-black font-sf-pro font-normal text-lg">{dateTime}</div>
+        <div className="flex-row min-[580px]:flex items-center justify-between">
+          <div className="text-black font-sf-pro font-semibold text-xl truncate">{name}</div>
+          <div className="text-black font-sf-pro font-normal pt-[5px] text-sm min-[580px]:text-lg">{dateTime}</div>
         </div>
       </div>
     </motion.div>

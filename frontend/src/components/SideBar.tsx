@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "../hooks/useAuth";
 import SideBarProfile from "./SideBarProfile";
 import SideBarElement from "./SideBarElement";
-import SideBarSwitch from "./SideBarSwitch";
 import sidebarAccount from "../assets/sidebarAccount.svg";
-import sidebarColor from "../assets/sidebarColor.svg";
 import sidebarDashboard from "../assets/sidebarDashboard.svg";
 import sidebarHistory from "../assets/sidebarHistory.svg";
 import sidebarSignOut from "../assets/sidebarSignOut.svg";
@@ -20,15 +18,9 @@ interface SideBarProps {
 const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
   const { user, logout } = useAuth();
   const [activeElement, setActiveElement] = useState<string>(currentScreen || "Dashboard");
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleSignOut = () => {
     logout();
-  };
-
-  const handleDarkModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-    console.log(isDarkMode ? "light mode" : "dark mode");
   };
 
   if (currentScreen && currentScreen !== activeElement) {
@@ -70,12 +62,6 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
             }}
             active={activeElement === "History"}
           />
-
-          <br></br>
-          <div className="flex justify-center w-full">
-            <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
-          </div>
-
           <SideBarElement
             element="Account"
             logo={sidebarAccount}
@@ -91,20 +77,6 @@ const SideBar = ({ currentScreen, onScreenChange }: SideBarProps) => {
             onClick={handleSignOut}
             active={activeElement === "Sign Out"}
           />
-        </div>
-
-        <div className="flex flex-col flex-shrink-0">
-          <div className="flex justify-center w-full">
-            <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
-          </div>
-          <div className="flex flex-col justify-center w-full p-[1rem]">
-            <SideBarSwitch
-              element="Dark Mode"
-              logo={sidebarColor}
-              isOn={isDarkMode}
-              onToggle={handleDarkModeToggle}
-            />
-          </div>
         </div>
       </div>
     </motion.div>

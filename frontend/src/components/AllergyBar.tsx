@@ -65,18 +65,20 @@ const AllergyBar = ({ onAllergiesLoaded }: AllergyBarProps) => {
   };
 
   return (
-    <div className="h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y-auto overflow-x-hidden no-scrollbar">
+    <div className="py-[2.5rem] md:px-[1rem] lg:px-[0.5rem] h-full w-full relative bg-white/50 rounded-3xl shadow-xl backdrop-blur-sm outline outline-1 outline-offset-[-0.0625rem] outline-white/50 overflow-y-auto overflow-x-hidden no-scrollbar">
       <div
         className={`flex flex-col justify-start ${
           isActive ? "items-start" : "items-center"
-        } p-[1rem]`}
+        }`}
       >
-        <div className="pt-[2.5rem] flex justify-center text-black font-sf-pro font-semibold text-3xl w-full">
-          My Allergies
-        </div>
-        <br></br>
-        <div className="flex justify-center w-full">
-          <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
+        <div className="w-full hidden lg:block">
+          <div className="flex justify-center text-black font-sf-pro font-semibold text-3xl w-full">
+            My Allergies
+          </div>
+          <br></br>
+          <div className="flex justify-center w-full">
+            <hr className="w-9/10 justify-center pt-[1rem] opacity-40"></hr>
+          </div>
         </div>
 
         {loading ? (

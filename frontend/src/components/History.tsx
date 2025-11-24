@@ -77,7 +77,7 @@ const History = () => {
 
     try {
       await menuAPI.deleteMenuHistory(accessToken, id);
-      
+
       timeoutRef.current = setTimeout(() => {
         setMenuHistory((prev) => prev.filter((item) => item.id !== id));
         setDeletingIds((prev) => {
@@ -105,9 +105,9 @@ const History = () => {
             History
           </div>
           <div className="w-[3rem] flex justify-end">
-             <motion.button
+            <motion.button
               onClick={() => setIsActive(!isActive)}
-              className="cursor-pointer w-[3rem] h-[3rem] backdrop-blur-sm border border-white/50 rounded-full flex items-center justify-center shadow-xl"
+              className="cursor-pointer w-[3rem] h-[3rem] bg-white/10 border border-white/50 rounded-full flex items-center justify-center shadow-xl"
               initial="initial"
               whileHover="hover"
               whileTap="tap"
@@ -144,10 +144,10 @@ const History = () => {
         </div>
         <br></br>
         <div className="flex justify-center w-full">
-          <hr className="w-full mx-[1.2rem] md:mx-[2.2rem] pt-[1rem] opacity-40"></hr>
+          <hr className="w-full mx-[2.2rem] pt-[1rem] opacity-40"></hr>
         </div>
         <div className="flex justify-center w-full">
-          <div className="w-full px-[1rem] md:px-[2rem]">
+          <div className="w-full px-[2rem]">
             {isLoading && (
               <div className="text-center py-4">Loading...</div>
             )}

@@ -25,7 +25,7 @@ const Dashboard = ({ onNavigateToHistory }: DashboardProps) => {
   };
 
   return (
-    <div className="flex flex-col h-auto lg:h-full min-h-0 gap-[1rem]">
+    <div className="flex flex-col h-full min-h-0 gap-[1rem]">
       {/* Mobile Tab Toggles */}
       <div className="flex lg:hidden bg-white/50 p-1 rounded-xl backdrop-blur-sm shrink-0 relative">
         <button

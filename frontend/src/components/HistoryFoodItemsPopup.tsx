@@ -100,7 +100,7 @@ const HistoryFoodItemsPopup = ({
             </svg>
           </button>
         </div>
-        <div className="grid grid-cols-3 place-items-center pt-[6.125rem] px-6 pb-6 overflow-y-auto overflow-x-visible no-scrollbar">
+        <div className="grid grid-cols min-[720px]:grid-cols-2 min-[1100px]:grid-cols-3 min-[1850px]:grid-cols-4 place-items-center pt-[6.125rem] px-6 pb-6 overflow-y-auto overflow-x-visible no-scrollbar">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
               <FoodItemCard
