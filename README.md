@@ -5,7 +5,7 @@
 
   **AI-powered food allergy management for safer dining experiences**
 
-  [Live Demo](https://halo-nine-gold.vercel.app) • [Report Bug](https://github.com/klin2686/halo/issues) • [Request Feature](https://github.com/klin2686/halo/issues)
+  [Report Bug](https://github.com/klin2686/halo/issues) • [Request Feature](https://github.com/klin2686/halo/issues)
 </div>
 
 ---
